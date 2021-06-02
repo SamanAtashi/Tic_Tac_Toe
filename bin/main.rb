@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 puts 'Welcome to Tic_Tac_Toe Game'
-
+# rubocop:disable Lint/UselessAssignment
+# rubocop:disable Naming/VariableNumber
 puts 'Enter Player-1 name:'
-player_1 = gets.chomp
+player_1 = gets.strip.chomp.capitalize
 while player_1.empty?
   print 'You can\'t leave this empty. Please, enter you name '
   puts
@@ -10,7 +11,7 @@ while player_1.empty?
 end
 
 puts 'Enter Player-2 name:'
-player_2 = gets.chomp
+player_2 = gets.strip.chomp.capitalize
 while player_2.empty?
   print 'You can\'t leave this empty. Please, enter you name '
   puts
@@ -49,3 +50,5 @@ until gameover
 end
 
 puts "It's a Tie!!!"
+# rubocop:enable Lint/UselessAssignment
+# rubocop:enable Naming/VariableNumber
