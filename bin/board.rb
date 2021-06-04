@@ -39,15 +39,57 @@ class Board
     end
   end
 
-  def win_row?(_mark)
+  def win_row?(mark)
+    @grid.each do |sub_arr|
+      return true if sub_arr.all? { |ele| ele == mark }
+    end
     false
   end
 
-  def win_col?(_mark)
+  def win_col?(mark)
+    i = 0
+    count = 0
+    while i < @grid.size
+      j = 0
+      while j < @grid[i].size
+        count += 1 if @grid[j][i] == mark
+        j += 1
+      end
+      return true if count == 3
+
+      count = 0
+      i += 1
+    end
     false
   end
 
-  def win_diagonal?(_mark)
+  def win_diagonal?(mark)
+    # L->R
+    i = 0
+    temp_1 = []
+    while i < @grid.size
+      j = i
+      while j < @grid.size
+        temp_1 << @grid[i][j] if @grid[i][j] == mark
+        j += 1
+        i += 1
+      end
+    end
+    return true if temp_1.size >= 3
+
+    # R->L
+    k = 0
+    temp_2 = []
+    while k < @grid.size
+      f = @grid.size - 1
+      while f >= 0
+        temp_2 << @grid[k][f] if @grid[k][f] == mark
+        f -= 1
+        k += 1
+      end
+    end
+    return true if temp_2.size >= 3
+
     false
   end
 
