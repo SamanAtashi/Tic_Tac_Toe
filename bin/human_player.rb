@@ -31,7 +31,8 @@ class HumanPlayer
     when 9
       [2, 2]
     else
-      'Error: invalid value'
+      puts 'invalid number, Please select a number between 1-9'
+      get_position
     end
   end
 end
