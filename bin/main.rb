@@ -80,9 +80,9 @@ class Game
   end
 end
 
-# rubocop:disable Naming/VariableNumber
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Style/StringConcatenation
+# rubocop:enable Naming/VariableNumber
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Style/StringConcatenation
 
 b = Game.new('X', 'O')
 b.play
