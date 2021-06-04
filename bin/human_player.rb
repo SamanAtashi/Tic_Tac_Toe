@@ -1,3 +1,7 @@
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Naming/AccessorMethodName
+
 class HumanPlayer
   attr_reader :mark_value
 
@@ -31,3 +35,6 @@ class HumanPlayer
     end
   end
 end
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Naming/AccessorMethodName

@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+# rubocop:disable Naming/VariableNumber
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Style/StringConcatenation
+
 require_relative './board'
 require_relative './human_player'
 
@@ -75,6 +79,10 @@ class Game
     puts 'DRAW'
   end
 end
+
+# rubocop:disable Naming/VariableNumber
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Style/StringConcatenation
 
 b = Game.new('X', 'O')
 b.play
