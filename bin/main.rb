@@ -1,54 +1,80 @@
 #!/usr/bin/env ruby
-puts 'Welcome to Tic_Tac_Toe Game'
-# rubocop:disable Lint/UselessAssignment
-# rubocop:disable Naming/VariableNumber
-puts 'Enter Player-1 name:'
-player_1 = gets.strip.chomp.capitalize
-while player_1.empty?
-  print 'You can\'t leave this empty. Please, enter you name '
-  puts
-  player_1 = gets.strip.chomp.capitalize
-end
+require_relative './board'
+require_relative './human_player'
 
-puts 'Enter Player-2 name:'
-player_2 = gets.strip.chomp.capitalize
-while player_2.empty?
-  print 'You can\'t leave this empty. Please, enter you name '
-  puts
-  player_2 = gets.strip.chomp.capitalize
-end
-# ! -------------------------------------------------------
-puts
-puts "#{player_1} will play as X and #{player_2} as O"
-puts
-puts 'Let the game begin!!!'
-# ! -------------------------------------------------------
-grid = "+---+---+---+ \n| 1 | 2 | 3 | \n+---+---+---+ \n| 4 | 5 | 6 | \n+---+---+---+ \n| 7 | 8 | 9 | \n+---+---+---+ "
-# ! -------------------------------------------------------
-gameover = false
-until gameover
-  puts grid
-  puts
-  puts "It's #{player_1}s turn"
-  puts 'Please select an available cell from the board...'
-  begin
-    cell = gets.chomp.match(/[1-9]/)[0]
-  rescue StandardError
-    puts 'Enter valid number, please!!!'
-    retry
-  end
-  puts "It's #{player_2}s turn"
-  puts 'Please select an available cell from the board...'
-  begin
-    cell = gets.chomp.match(/[1-9]/)[0]
-  rescue StandardError
-    puts 'Enter valid number, please!!!'
-    retry
+class Game
+  def initialize(mark_1, mark_2)
+    @player_1 = HumanPlayer.new(mark_1)
+    @player_2 = HumanPlayer.new(mark_2)
+    @current_player = @player_1
+    @board = Board.new
   end
 
-  gameover = true
+  attr_reader :current_player
+
+  def intro
+    puts 'Enter Player-1 name:'
+    @player_1_name = gets.strip.chomp.capitalize
+    while @player_1_name.empty?
+      print 'You can\'t leave this empty. Please, enter you name '
+      puts
+      @player_1_name = gets.strip.chomp.capitalize
+    end
+
+    puts 'Enter Player-2 name:'
+    @player_2_name = gets.strip.chomp.capitalize
+    while @player_2_name.empty?
+      print 'You can\'t leave this empty. Please, enter you name '
+      puts
+      @player_2_name = gets.strip.chomp.capitalize
+    end
+  end
+
+  def switch_turn
+    if @current_player == @player_1
+      @current_player = @player_2
+      @current_player_name = @player_1_name
+
+    elsif @current_player == @player_2
+      @current_player = @player_1
+      @current_player_name = @player_2_name
+    end
+  end
+
+  def clearing_screen
+    system 'cls'
+    system 'clear'
+  end
+
+  def play
+    intro
+    puts "#{@player_1_name} plays as X and #{@player_2_name} as O"
+    @current_player_name = @player_2_name
+
+    while @board.empty_positions?
+      clearing_screen
+      @board.printing
+
+      puts "#{@current_player_name}'s(#{@current_player.mark_value}) turn. please, Enter a number between 1 -- 9 :"
+
+      pos = @current_player.get_position
+      @board.place_mark(pos, @current_player.mark_value)
+      if @board.win?(@current_player.mark_value)
+        clearing_screen
+        @board.printing
+        puts 'Game Over'
+        puts @current_player_name + " (#{@current_player.mark_value})" + ' HAS WON!'
+        return
+      else
+        switch_turn
+        clearing_screen
+      end
+    end
+
+    puts 'Game Over'
+    puts 'DRAW'
+  end
 end
 
-puts "It's a Tie!!!"
-# rubocop:enable Lint/UselessAssignment
-# rubocop:enable Naming/VariableNumber
+b = Game.new('X', 'O')
+b.play
