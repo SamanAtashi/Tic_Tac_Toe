@@ -2,7 +2,7 @@
 
 > It is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. It is a solved game with a forced draw assuming best play from both players.
 
-![tictactoe]()
+![tictactoe](./assets/screenshot.png)
 
 ## Built With
 
@@ -38,9 +38,6 @@
 - The first player who matches three spots in a horizontal, vertical, or diagonal row. is the winner.
 - When the spots on the board are all marked with no matches, then, the game ends in a draw.
 
-### Rspec
-
-To run the tests, enter the TicTacToe directory and run `rspec --init`. Then run the files `helpers_spec.rb`, `logic_spec.rb` and `player_spec.rb` in the spec folder using rspec command.
 
 ## About the game
 
