@@ -2,6 +2,7 @@
 # rubocop:disable Naming/VariableNumber
 # rubocop:disable Metrics/MethodLength
 # rubocop:disable Style/StringConcatenation
+# rubocop:disable Style/ClassVars
 
 require './lib/board'
 require './lib/human_player'
@@ -103,6 +104,7 @@ end
 # rubocop:enable Naming/VariableNumber
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Style/StringConcatenation
+# rubocop:enable Style/ClassVars
 
 b = Game.new('X', 'O')
 b.play

@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/MethodLength
 
 class HumanPlayer
   attr_reader :mark_value
@@ -32,4 +31,3 @@ class HumanPlayer
   end
 end
 # rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/MethodLength
