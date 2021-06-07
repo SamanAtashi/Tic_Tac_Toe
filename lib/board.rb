@@ -2,26 +2,17 @@
 # rubocop:disable Metrics/MethodLength
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Naming/VariableNumber
+# require_relative './main.rb'
 
 class Board
+  attr_accessor :grid
+
   def initialize
     @grid = [
       %w[1 2 3],
       %w[4 5 6],
       %w[7 8 9]
     ]
-  end
-
-  def printing
-    print " +---+---+---+ \n"
-    @grid.each do |sub_arr|
-      sub_arr.each do |ele|
-        print ' | '
-        print ele
-      end
-      print " | \n"
-      print " +---+---+---+ \n"
-    end
   end
 
   def valid?(pos)
