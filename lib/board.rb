@@ -27,12 +27,7 @@ class Board
   end
 
   def place_mark(position, mark)
-    if valid?(position) && empty?(position)
-      @grid[position[0]][position[1]] = mark
-    else
-      puts 'Invalid mark'
-      puts 'Try again'
-    end
+    @grid[position[0]][position[1]] = mark if valid?(position) && empty?(position)
   end
 
   def win_row?(mark)
